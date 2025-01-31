@@ -1,6 +1,6 @@
 {
   "name": "@adamhl8/ts-project-configs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "repository": {
     "type": "git",
@@ -52,6 +52,7 @@
     "eslint-plugin-unicorn": "^56.0.1",
     "globals": "^15.14.0",
     "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-astro-organize-imports": "^0.4.11",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-pkg": "^0.18.1",
     "prettier-plugin-sh": "^0.14.0",

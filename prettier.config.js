@@ -4,12 +4,15 @@ const prettierConfig = {
   semi: false,
   plugins: [
     "prettier-plugin-organize-imports",
+    "prettier-plugin-astro-organize-imports",
     "prettier-plugin-sh",
     "prettier-plugin-pkg",
     "prettier-plugin-toml",
     "prettier-plugin-tailwindcss",
     "prettier-plugin-astro",
   ],
+  organizeImportsSkipDestructiveCodeActions: true,
+  astroOrganizeImportsMode: "SortAndCombine",
   overrides: [
     {
       // https://github.com/prettier/prettier/issues/15956
