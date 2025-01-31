@@ -1,6 +1,8 @@
 import eslintJs from "@eslint/js"
 import vitest from "@vitest/eslint-plugin"
 import astro from "eslint-plugin-astro"
+// @ts-expect-error Does not include types
+import jsxA11y from "eslint-plugin-jsx-a11y"
 import react from "eslint-plugin-react"
 // @ts-expect-error https://github.com/facebook/react/issues/30119
 import reactCompiler from "eslint-plugin-react-compiler"
@@ -32,20 +34,21 @@ const reactCompilerFlat = {
 }
 
 const eslintConfig = tseslint.config(
-  eslintJs.configs.recommended,
+  eslintJs.configs.all,
   tseslint.configs.strictTypeChecked,
   tseslint.configs.stylisticTypeChecked,
   unicorn.configs["flat/all"],
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   sonarjs.configs.recommended,
-  // @ts-expect-error This is not undefined
-  react.configs.flat.recommended,
-  react.configs.flat["jsx-runtime"],
+  { ignores: ["**/*.astro"], ...react.configs.flat["all"] },
+  { ignores: ["**/*.astro"], ...react.configs.flat["jsx-runtime"] },
   reactHooksFlat,
   reactCompilerFlat,
   reactRefresh.configs.recommended,
   astro.configs["flat/all"],
   astro.configs["flat/jsx-a11y-strict"],
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+  { ignores: ["**/*.astro"], ...jsxA11y.flatConfigs.strict, plugins: {} },
   { files: ["**/*.test.ts"], ...vitest.configs.all },
   {
     languageOptions: {
@@ -53,7 +56,6 @@ const eslintConfig = tseslint.config(
       sourceType: "module",
       parserOptions: {
         projectService: true,
-        tsconfigRootDir: import.meta.dirname,
       },
       globals: {
         ...globals.node,
@@ -69,9 +71,29 @@ const eslintConfig = tseslint.config(
   },
   {
     rules: {
+      "sort-imports": "off",
+      "sort-keys": "off",
+      "capitalized-comments": "off",
+      "one-var": "off",
+      "init-declarations": "off",
+      "func-style": "off",
+      curly: "off",
+      "consistent-return": "off",
+      "no-ternary": "off",
+      "no-inline-comments": "off",
+      "max-statements": "off",
+      "no-console": "off",
+      "no-continue": "off",
+      "no-magic-numbers": "off",
+      "id-length": "off",
+      camelcase: "off",
+      "no-undefined": "off",
+      "require-unicode-regexp": ["error", { requireFlag: "v" }],
       "@typescript-eslint/no-confusing-void-expression": "off",
       "@typescript-eslint/consistent-type-imports": "error",
       "unicorn/prevent-abbreviations": "off",
+      "unicorn/filename-case": "off",
+      "unicorn/no-keyword-prefix": "off",
       "astro/semi": "off",
       "astro/sort-attributes": "off",
     },

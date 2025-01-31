@@ -3,16 +3,13 @@ const prettierConfig = {
   printWidth: 120,
   semi: false,
   plugins: [
-    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-organize-imports",
     "prettier-plugin-sh",
     "prettier-plugin-pkg",
     "prettier-plugin-toml",
     "prettier-plugin-tailwindcss",
     "prettier-plugin-astro",
   ],
-  importOrder: ["^@/(.*)$", "^[./]"],
-  importOrderSeparation: true,
-  importOrderSortSpecifiers: true,
   overrides: [
     {
       // https://github.com/prettier/prettier/issues/15956
