@@ -3,16 +3,18 @@ const prettierConfig = {
   printWidth: 120,
   semi: false,
   plugins: [
-    "prettier-plugin-organize-imports",
-    "prettier-plugin-astro-organize-imports",
     "prettier-plugin-sh",
     "prettier-plugin-pkg",
     "prettier-plugin-toml",
-    "prettier-plugin-tailwindcss",
+    "prettier-plugin-organize-imports",
     "prettier-plugin-astro",
+    "prettier-plugin-tailwindcss",
+    // needs to be last: https://github.com/neoki07/prettier-plugin-astro-organize-imports?tab=readme-ov-file#compatibility-with-other-prettier-plugins
+    "prettier-plugin-astro-organize-imports",
   ],
   organizeImportsSkipDestructiveCodeActions: true,
   astroOrganizeImportsMode: "SortAndCombine",
+  tailwindStylesheet: "./src/global.css",
   overrides: [
     {
       // https://github.com/prettier/prettier/issues/15956

@@ -1,7 +1,7 @@
 import eslintJs from "@eslint/js"
 import vitest from "@vitest/eslint-plugin"
+import prettier from "eslint-config-prettier"
 import astro from "eslint-plugin-astro"
-// @ts-expect-error Does not include types
 import jsxA11y from "eslint-plugin-jsx-a11y"
 import react from "eslint-plugin-react"
 // @ts-expect-error https://github.com/facebook/react/issues/30119
@@ -47,9 +47,9 @@ const eslintConfig = tseslint.config(
   reactRefresh.configs.recommended,
   astro.configs["flat/all"],
   astro.configs["flat/jsx-a11y-strict"],
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
   { ignores: ["**/*.astro"], ...jsxA11y.flatConfigs.strict, plugins: {} },
   { files: ["**/*.test.ts"], ...vitest.configs.all },
+  prettier,
   {
     languageOptions: {
       ecmaVersion: "latest",
@@ -77,7 +77,6 @@ const eslintConfig = tseslint.config(
       "one-var": "off",
       "init-declarations": "off",
       "func-style": "off",
-      curly: "off",
       "consistent-return": "off",
       "no-ternary": "off",
       "no-inline-comments": "off",
