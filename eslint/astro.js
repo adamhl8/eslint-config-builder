@@ -1,0 +1,33 @@
+import astro from "eslint-plugin-astro"
+import globals from "globals"
+import tseslint from "typescript-eslint"
+
+const baseAstroJsxA11yConfig = astro.configs["flat/jsx-a11y-strict"].slice(0, -1)
+const astroJsxA11yConfig = astro.configs["flat/jsx-a11y-strict"].pop()
+const astroJsxA11yPlugin = astroJsxA11yConfig?.plugins?.["jsx-a11y"] ?? {}
+const astroJsxA11yRules = astroJsxA11yConfig?.rules ?? {}
+
+const astroConfig = tseslint.config(
+  astro.configs["flat/all"],
+  {
+    extends: [baseAstroJsxA11yConfig],
+    plugins: {
+      "astro/jsx-a11y": astroJsxA11yPlugin,
+    },
+    rules: astroJsxA11yRules,
+  },
+
+  {
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
+  {
+    rules: {
+      "astro/semi": "off",
+      "astro/sort-attributes": "off",
+    },
+  },
+)
+
+export { astroConfig as astro }
