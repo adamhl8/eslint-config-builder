@@ -1,33 +1,14 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./src/tsconfig.base.json",
+  "exclude": ["dist"],
   "compilerOptions": {
-    "target": "ESNext",
-    "jsx": "react-jsx",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "moduleDetection": "force",
-    "isolatedModules": true,
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "resolveJsonModule": true,
-    "noEmit": true,
-    "allowJs": true,
-    "checkJs": true,
-    "skipLibCheck": true,
-
-    // Strictness
-    "strict": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "exactOptionalPropertyTypes": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "forceConsistentCasingInFileNames": true,
-    "noUncheckedSideEffectImports": true
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "noEmit": false,
+    "allowImportingTsExtensions": false,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationDir": "./dist/types"
   }
 }

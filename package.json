@@ -1,6 +1,6 @@
 {
   "name": "@adamhl8/ts-project-configs",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "type": "module",
   "repository": {
     "type": "git",
@@ -18,21 +18,17 @@
   "license": "MIT",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "types": "./index.d.ts"
+      "import": "./dist/index.js",
+      "types": "./dist/types/index.d.ts"
     },
-    "./tsconfig.json": "./tsconfig.json"
+    "./tsconfig.base.json": "./dist/tsconfig.base.json"
   },
   "files": [
-    "eslint.config.js",
-    "eslint/",
-    "index.d.ts",
-    "index.js",
-    "prettier.config.js",
-    "tsconfig.json"
+    "dist/"
   ],
   "scripts": {
-    "lint": "tsc --noEmit && prettier --write . && eslint ."
+    "bundle": "rm -rf ./dist && tsc -p ./tsconfig.build.json && cp ./src/tsconfig.base.json ./dist/ && prettier --write ./dist",
+    "lint": "bun bundle && prettier --write . && eslint ."
   },
   "peerDependencies": {
     "eslint": "latest",

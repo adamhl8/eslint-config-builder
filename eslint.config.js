@@ -1,9 +1,6 @@
 import tseslint from "typescript-eslint"
-import { base } from "./eslint/base.js"
-import { astro } from "./eslint/astro.js"
-import { react } from "./eslint/react.js"
-import { testing } from "./eslint/testing.js"
+import { ESLintConfigBuilder } from "./dist/index.js"
 
-const eslintConfig = tseslint.config(astro, react, testing, base)
+const eslintConfig = new ESLintConfigBuilder().astro().react().testing().build()
 
-export default eslintConfig
+export default tseslint.config({ ignores: ["dist/**"] }, eslintConfig)

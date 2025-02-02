@@ -12,6 +12,9 @@ const base = tseslint.config(
   unicorn.configs["flat/all"],
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   sonarjs.configs.recommended,
+)
+
+const baseOverride = tseslint.config(
   prettier,
   {
     languageOptions: {
@@ -86,4 +89,4 @@ const base = tseslint.config(
   },
 )
 
-export { base }
+export { base, baseOverride }

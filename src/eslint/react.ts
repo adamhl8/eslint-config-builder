@@ -29,8 +29,13 @@ const reactCompilerFlat = {
 
 const reactConfig = tseslint.config(
   {
-    // @ts-expect-error not undefined
-    extends: [react.configs.flat["all"], react.configs.flat["jsx-runtime"], jsxA11y.flatConfigs.strict],
+    extends: [
+      // @ts-expect-error not undefined
+      react.configs.flat["all"],
+      // @ts-expect-error not undefined
+      react.configs.flat["jsx-runtime"],
+      jsxA11y.flatConfigs.strict,
+    ],
     ignores: ["**/*.astro"],
   },
   reactHooksFlat,

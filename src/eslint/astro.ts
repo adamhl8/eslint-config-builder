@@ -16,7 +16,6 @@ const astroConfig = tseslint.config(
     },
     rules: astroJsxA11yRules,
   },
-
   {
     languageOptions: {
       globals: globals.browser,
