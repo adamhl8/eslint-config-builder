@@ -30,6 +30,7 @@ const baseOverride = tseslint.config(
     rules: {
       // eslint
       "sort-imports": "off",
+      "no-duplicate-imports": "off",
       "sort-keys": "off",
       "capitalized-comments": "off",
       "one-var": "off",
