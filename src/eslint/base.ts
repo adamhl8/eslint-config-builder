@@ -36,6 +36,7 @@ const baseOverride = tseslint.config(
       "one-var": "off",
       "func-style": "off",
       "consistent-return": "off",
+      "init-declarations": "off",
       "no-ternary": "off",
       "no-inline-comments": "off",
       "max-statements": "off",
@@ -72,9 +73,6 @@ const baseOverride = tseslint.config(
 
       "no-loop-func": "off",
       "@typescript-eslint/no-loop-func": "error",
-
-      "init-declarations": "off",
-      "@typescript-eslint/init-declarations": "error",
 
       "class-methods-use-this": "off",
       "@typescript-eslint/class-methods-use-this": "error",
