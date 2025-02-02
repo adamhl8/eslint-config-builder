@@ -1,6 +1,6 @@
 {
   "name": "@adamhl8/ts-project-configs",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "type": "module",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "dist/"
   ],
   "scripts": {
-    "bundle": "rm -rf ./dist && tsc -p ./tsconfig.build.json && cp ./src/tsconfig.json ./dist/ && prettier --write ./dist",
+    "bundle": "rm -rf ./dist && tsc -p ./tsconfig.build.json && cp ./src/tsconfig.json ./dist/ && prettier --ignore-path --write ./dist",
     "lint": "bun bundle && prettier --write . && eslint ."
   },
   "peerDependencies": {

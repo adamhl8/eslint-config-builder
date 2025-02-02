@@ -9,9 +9,10 @@ const prettierConfig: Config = {
     "prettier-plugin-toml",
     "@prettier/plugin-xml",
     "prettier-plugin-jsdoc",
-    "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-astro",
     "prettier-plugin-tailwindcss",
+    // must be last: https://github.com/IanVS/prettier-plugin-sort-imports/issues/201
+    "@ianvs/prettier-plugin-sort-imports",
   ],
   importOrder: [
     "<TYPES>^(node:)",
