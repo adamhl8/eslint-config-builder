@@ -84,14 +84,17 @@ const eslintJsConfig = tseslint.config({
     "prefer-spread": "error",
     "prefer-template": "error",
     radix: ["error", "as-needed"],
-    "require-await": "error",
     "symbol-description": "error",
     yoda: "error",
   },
 })
 
 const tseslintConfig = tseslint.config({
-  extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
+  extends: [
+    tseslint.configs.strictTypeChecked,
+    tseslint.configs.stylisticTypeChecked,
+    tseslint.configs.eslintRecommended,
+  ],
   rules: {
     "@typescript-eslint/no-confusing-void-expression": [
       "error",
@@ -189,6 +192,8 @@ const regexpConfig = tseslint.config({
 const jsdocConfig = tseslint.config({
   extends: [jsdoc.configs["flat/recommended-typescript-error"]],
   rules: {
+    "jsdoc/require-jsdoc": ["error", { publicOnly: true }],
+
     "jsdoc/check-indentation": "error",
     "jsdoc/check-line-alignment": "error",
     "jsdoc/no-bad-blocks": "error",
