@@ -1,18 +1,17 @@
 import type { ConfigWithExtends as TSESLintConfig } from "typescript-eslint"
 
 import eslintJs from "@eslint/js"
-import json from "@eslint/json"
 import prettier from "eslint-config-prettier"
 import jsdoc from "eslint-plugin-jsdoc"
 // @ts-expect-error does not include types
 import promise from "eslint-plugin-promise"
 import regexp from "eslint-plugin-regexp"
 import sonarjs from "eslint-plugin-sonarjs"
-import toml from "eslint-plugin-toml"
 import unicorn from "eslint-plugin-unicorn"
-import yaml from "eslint-plugin-yml"
 import globals from "globals"
 import tseslint from "typescript-eslint"
+
+import { jsonYamlTomlIgnores } from "./json-yaml-toml.js"
 
 const eslintJsConfig = tseslint.config({
   extends: [eslintJs.configs.recommended],
@@ -186,6 +185,7 @@ const regexpConfig = tseslint.config({
     "regexp/sort-character-class-elements": "error",
   },
 })
+
 const jsdocConfig = tseslint.config({
   extends: [jsdoc.configs["flat/recommended-typescript-error"]],
   rules: {
@@ -199,60 +199,22 @@ const jsdocConfig = tseslint.config({
   },
 })
 
-const yamlConfig = tseslint.config(
-  {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-    extends: [yaml.configs["flat/standard"] as TSESLintConfig],
-    rules: {
-      "yml/file-extension": "error",
-      "yml/require-string-key": "error",
-    },
-  },
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-  yaml.configs["flat/prettier"] as TSESLintConfig,
-)
-
-// https://github.com/ota-meshi/eslint-plugin-toml/issues/245
-// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-const tomlConfig = tseslint.config(toml.configs["flat/standard"] as TSESLintConfig)
-
-const jsonConfig = tseslint.config(
-  {
-    extends: [json.configs.recommended],
-    files: ["**/*.json"],
-    ignores: ["package-lock.json"],
-    language: "json/json",
-  },
-  {
-    extends: [json.configs.recommended],
-    files: ["**/*.jsonc"],
-    language: "json/jsonc",
-  },
-  {
-    extends: [json.configs.recommended],
-    files: ["**/*.json5"],
-    language: "json/json5",
-  },
-)
-
-const baseConfig = tseslint.config(
+const typescriptConfig = tseslint.config(
   {
     // for reasons that aren't entirely clear, adding the @eslint/json plugin causes the @eslint/js plugin to try to parse JSON files which makes eslint throw an error
     extends: [eslintJsConfig],
     ignores: ["**/*.json"],
   },
-  tseslintConfig,
+  { extends: [tseslintConfig], ignores: jsonYamlTomlIgnores },
+  eslintJsConfig,
   unicornConfig,
   sonarjsConfig,
   promiseConfig,
   regexpConfig,
   jsdocConfig,
-  yamlConfig,
-  tomlConfig,
-  jsonConfig,
 )
 
-const languageOptionsConfig = tseslint.config(prettier, {
+const tsLanguageOptionsConfig = tseslint.config(prettier, {
   languageOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
@@ -263,4 +225,4 @@ const languageOptionsConfig = tseslint.config(prettier, {
   },
 })
 
-export { baseConfig, languageOptionsConfig }
+export { typescriptConfig, tsLanguageOptionsConfig }
