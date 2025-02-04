@@ -1,6 +1,6 @@
 {
   "name": "@adamhl8/ts-project-configs",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "type": "module",
   "repository": {
     "type": "git",
@@ -27,8 +27,7 @@
     "dist/"
   ],
   "scripts": {
-    "bundle": "rm -rf ./dist && tsc -p ./tsconfig.build.json && cp ./src/tsconfig.json ./dist/ && prettier --ignore-path --write ./dist",
-    "lint": "bun bundle && prettier --write . && eslint ."
+    "bundle": "rm -rf ./dist && tsc -p ./tsconfig.build.json && cp ./src/tsconfig.json ./dist/ && prettier --ignore-path --write ./dist && prettier --write . && eslint ."
   },
   "peerDependencies": {
     "eslint": "latest",
@@ -38,21 +37,32 @@
   },
   "dependencies": {
     "@eslint/js": "^9.19.0",
+    "@eslint/json": "^0.10.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@prettier/plugin-xml": "^3.4.1",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/eslint-plugin-jsx-a11y": "^6.10.0",
+    "@types/eslint-plugin-tailwindcss": "^3.17.0",
     "@vitest/eslint-plugin": "^1.1.25",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-astro": "^1.3.1",
+    "eslint-plugin-cypress": "^4.1.0",
+    "eslint-plugin-jest-dom": "^5.5.0",
+    "eslint-plugin-jsdoc": "^50.6.3",
     "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-compiler": "^19.0.0-beta-27714ef-20250124",
+    "eslint-plugin-react-compiler": "^19.0.0-beta-714736e-20250131",
     "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-native-a11y": "^3.5.1",
     "eslint-plugin-react-refresh": "^0.4.18",
+    "eslint-plugin-regexp": "^2.7.0",
     "eslint-plugin-sonarjs": "^3.0.1",
+    "eslint-plugin-tailwindcss": "^3.18.0",
     "eslint-plugin-testing-library": "^7.1.1",
+    "eslint-plugin-toml": "^0.12.0",
     "eslint-plugin-unicorn": "^56.0.1",
+    "eslint-plugin-yml": "^1.16.0",
     "globals": "^15.14.0",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-jsdoc": "^1.3.2",
@@ -66,7 +76,7 @@
     "eslint": "^9.19.0",
     "prettier": "^3.4.2",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.22.0"
+    "typescript-eslint": "^8.23.0"
   },
   "publishConfig": {
     "access": "public"
