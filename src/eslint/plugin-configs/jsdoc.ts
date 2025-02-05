@@ -6,7 +6,20 @@ const jsdocConfig: Config = {
   extends: [jsdoc.configs["flat/recommended-typescript-error"]],
   rules: {
     // modifications to rules that are already turned on in the extended configs
-    "jsdoc/require-jsdoc": ["error", { publicOnly: true }],
+    "jsdoc/require-jsdoc": [
+      "error",
+      {
+        publicOnly: true,
+        // https://github.com/gajus/eslint-plugin-jsdoc/issues/1189#issuecomment-1893647410
+        contexts: [
+          "TSDeclareFunction:not(TSDeclareFunction + TSDeclareFunction)",
+          "FunctionDeclaration:not(TSDeclareFunction + FunctionDeclaration)",
+        ],
+        require: {
+          FunctionDeclaration: false,
+        },
+      },
+    ],
 
     // additional rules
     "jsdoc/check-indentation": "error",
