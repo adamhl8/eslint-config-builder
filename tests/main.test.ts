@@ -142,6 +142,7 @@ describe("main", () => {
       "unicorn/prefer-includes", // adds to tseslint rule
       "regexp/no-octal", // unrelated to eslintJs rule: https://ota-meshi.github.io/eslint-plugin-regexp/rules/no-octal.html
       "react/no-deprecated", // tseslint rule by the same name is unrelated
+      "react/no-namespace", // tseslint rule by the same name is unrelated
     ])
 
     const baseRulesByPlugin: BaseRulesByPlugin = {}

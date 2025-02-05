@@ -19,7 +19,9 @@ const sonarjsConfig: Config = {
     "sonarjs/no-empty-character-class": "off",
     "sonarjs/no-control-regex": "off",
 
-    "sonarjs/prefer-read-only-props": "off", // covered by react
+    // covered by react
+    "sonarjs/prefer-read-only-props": "off",
+    "sonarjs/jsx-no-leaked-render": "off",
   },
 }
 
