@@ -27,7 +27,7 @@
     "dist/"
   ],
   "scripts": {
-    "bundle": "rm -rf ./dist && tsc -p ./tsconfig.build.json && cp ./src/tsconfig.json ./dist/ && prettier --ignore-path --write ./dist && prettier --write . && eslint ."
+    "bundle": "rm -rf ./dist && tsc -p ./tsconfig.build.json && cp ./src/tsconfig.json ./dist/ && prettier --ignore-path --write . && eslint . && bun test"
   },
   "peerDependencies": {
     "eslint": "latest",

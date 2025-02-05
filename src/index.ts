@@ -1,2 +1,2 @@
-export { ESLintConfigBuilder } from "./eslint-config-builder.js"
+export { ESLintConfigBuilder } from "./eslint/eslint-config-builder.js"
 export { prettierConfig } from "./prettier.js"
