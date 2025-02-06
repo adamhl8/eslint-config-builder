@@ -7,7 +7,7 @@ const testingLibraryConfig: Config = {
   files: ["**/?(*.)+(spec|test).[jt]s?(x)"],
   rules: {
     // additional rules
-    "testing-library/prefer-implicit-assert": "error",
+    "testing-library/prefer-explicit-assert": "error",
     "testing-library/prefer-user-event": "error",
   },
 }
