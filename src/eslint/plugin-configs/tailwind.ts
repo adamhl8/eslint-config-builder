@@ -1,9 +1,10 @@
-import type { Config } from "../utils.js"
-
 import tailwind from "eslint-plugin-tailwindcss"
 
-const tailwindConfig: Config = {
+import { buildConfig } from "../utils.js"
+
+const tailwindConfig = buildConfig({
+  name: "tailwind",
   extends: [tailwind.configs["flat/recommended"]],
-  rules: {},
-}
+})
+
 export { tailwindConfig }

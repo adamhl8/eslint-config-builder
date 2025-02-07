@@ -1,29 +1,32 @@
-import type { BaseConfig, Config } from "../utils.js"
-
 import json from "@eslint/json"
 
-const jsonConfig: BaseConfig = {
+import { buildConfig } from "../utils.js"
+
+const jsonConfig = buildConfig({
+  name: "eslint-json",
   extends: [json.configs.recommended],
   files: ["**/*.json"],
-  ignores: ["package-lock.json"],
+  ignores: ["**/package-lock.json", "**/tsconfig.json", "**/tsconfig.*.json"],
   language: "json/json",
-}
+})
 
-const jsoncConfig: BaseConfig = {
+const jsoncConfig = buildConfig({
+  name: "eslint-json",
   extends: [json.configs.recommended],
   files: ["**/*.jsonc"],
   language: "json/jsonc",
-}
+})
 
-const json5Config: BaseConfig = {
+const json5Config = buildConfig({
+  name: "eslint-json",
   extends: [json.configs.recommended],
   files: ["**/*.json5"],
   language: "json/json5",
-}
+})
 
-const eslintJsonConfig: Config = {
+const eslintJsonConfig = buildConfig({
+  name: "eslint-json",
   extends: [jsonConfig, jsoncConfig, json5Config],
-  rules: {},
-}
+})
 
 export { eslintJsonConfig }

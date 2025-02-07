@@ -1,8 +1,9 @@
-import type { Config } from "../utils.js"
-
 import jsdoc from "eslint-plugin-jsdoc"
 
-const jsdocConfig: Config = {
+import { buildConfig } from "../utils.js"
+
+const jsdocConfig = buildConfig({
+  name: "jsdoc",
   extends: [jsdoc.configs["flat/recommended-typescript-error"]],
   rules: {
     // modifications to rules that are already turned on in the extended configs
@@ -30,6 +31,6 @@ const jsdocConfig: Config = {
     "jsdoc/require-asterisk-prefix": "error",
     "jsdoc/require-throws": "error",
   },
-}
+})
 
 export { jsdocConfig }

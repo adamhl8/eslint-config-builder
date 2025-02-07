@@ -1,8 +1,9 @@
-import type { Config } from "../utils.js"
-
 import tseslint from "typescript-eslint"
 
-const tseslintConfig: Config = {
+import { buildConfig } from "../utils.js"
+
+const tseslintConfig = buildConfig({
+  name: "typescript-eslint",
   extends: [
     tseslint.configs.strictTypeChecked,
     tseslint.configs.stylisticTypeChecked,
@@ -36,6 +37,6 @@ const tseslintConfig: Config = {
     "@typescript-eslint/class-methods-use-this": "error",
     "@typescript-eslint/no-shadow": "error",
   },
-}
+})
 
 export { tseslintConfig }

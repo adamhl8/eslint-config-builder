@@ -1,8 +1,9 @@
-import type { Config } from "../utils.js"
-
 import regexp from "eslint-plugin-regexp"
 
-const regexpConfig: Config = {
+import { buildConfig } from "../utils.js"
+
+const regexpConfig = buildConfig({
+  name: "regexp",
   extends: [regexp.configs["flat/recommended"]],
   rules: {
     // additional rules
@@ -21,8 +22,8 @@ const regexpConfig: Config = {
     "regexp/prefer-result-array-groups": "error",
     "regexp/sort-character-class-elements": "error",
 
-    "prefer-regex-literals": ["error", { disallowRedundantWrapping: true }], // this eslintJs rule is set in regexp's recommended config, turning it on here with additional options
+    "prefer-regex-literals": ["error", { disallowRedundantWrapping: true }], // this eslint-js rule is set in regexp's recommended config, turning it on here with additional options
   },
-}
+})
 
 export { regexpConfig }

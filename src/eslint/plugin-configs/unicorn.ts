@@ -1,8 +1,9 @@
-import type { Config } from "../utils.js"
-
 import unicorn from "eslint-plugin-unicorn"
 
-const unicornConfig: Config = {
+import { buildConfig } from "../utils.js"
+
+const unicornConfig = buildConfig({
+  name: "unicorn",
   extends: [unicorn.configs["flat/recommended"]],
   rules: {
     // modifications to rules that are already turned on in the extended configs
@@ -20,6 +21,6 @@ const unicornConfig: Config = {
 
     "unicorn/prefer-string-starts-ends-with": "off", // covered by tseslint
   },
-}
+})
 
 export { unicornConfig }

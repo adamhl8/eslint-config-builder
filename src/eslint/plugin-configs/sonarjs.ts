@@ -1,11 +1,15 @@
-import type { BaseConfig, Config } from "../utils.js"
-
 import sonarjs from "eslint-plugin-sonarjs"
 
-const sonarjsConfig: Config = {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-  extends: [sonarjs.configs.recommended as BaseConfig],
+import { buildConfig } from "../utils.js"
+
+const sonarjsConfig = buildConfig({
+  name: "sonarjs",
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  extends: [sonarjs.configs.recommended],
   rules: {
+    // modifications to rules that are already turned on in the extended configs
+    "sonarjs/function-return-type": "off",
+
     // covered by tseslint
     "sonarjs/prefer-regexp-exec": "off",
     "sonarjs/no-array-delete": "off",
@@ -23,6 +27,6 @@ const sonarjsConfig: Config = {
     "sonarjs/prefer-read-only-props": "off",
     "sonarjs/jsx-no-leaked-render": "off",
   },
-}
+})
 
 export { sonarjsConfig }

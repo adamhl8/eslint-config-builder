@@ -1,15 +1,15 @@
-import type { Config } from "../utils.js"
-
 import testingLibrary from "eslint-plugin-testing-library"
 
-const testingLibraryConfig: Config = {
+import { buildConfig } from "../utils.js"
+
+const testingLibraryConfig = buildConfig({
+  name: "testing-library",
   extends: [testingLibrary.configs["flat/react"]],
-  files: ["**/?(*.)+(spec|test).[jt]s?(x)"],
   rules: {
     // additional rules
     "testing-library/prefer-explicit-assert": "error",
     "testing-library/prefer-user-event": "error",
   },
-}
+})
 
 export { testingLibraryConfig }

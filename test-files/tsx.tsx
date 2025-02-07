@@ -1,4 +1,4 @@
 const noop = () => {
-  return "noop"
+  return void 0
 }
 noop()

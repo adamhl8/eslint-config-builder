@@ -1,12 +1,11 @@
-import type { Config } from "../utils.js"
-
 import react from "eslint-plugin-react"
 import globals from "globals"
 
-const reactConfig: Config = {
-  // @ts-expect-error not undefined
-  extends: [react.configs.flat.recommended, react.configs.flat["jsx-runtime"]],
-  ignores: ["**/*.astro"],
+import { buildConfig } from "../utils.js"
+
+const reactConfig = buildConfig({
+  name: "react",
+  extends: [react.configs.flat["recommended"] ?? [], react.configs.flat["jsx-runtime"] ?? []],
   languageOptions: {
     globals: globals.browser,
   },
@@ -27,7 +26,7 @@ const reactConfig: Config = {
     "react/jsx-boolean-value": ["error", "always"],
     "react/jsx-curly-brace-presence": ["error", { props: "never", children: "never", propElementValues: "always" }],
     "react/jsx-fragments": "error",
-    "react/jsx-no-bind": "error",
+    "react/jsx-no-bind": ["error", { allowArrowFunctions: true }],
     "react/jsx-no-constructed-context-values": "error",
     "react/jsx-no-leaked-render": "error",
     "react/jsx-no-script-url": "error",
@@ -58,6 +57,6 @@ const reactConfig: Config = {
     "react/self-closing-comp": "error",
     "react/void-dom-elements-no-children": "error",
   },
-}
+})
 
 export { reactConfig }

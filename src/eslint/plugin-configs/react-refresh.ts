@@ -1,11 +1,11 @@
-import type { Config } from "../utils.js"
-
 import reactRefresh from "eslint-plugin-react-refresh"
 import globals from "globals"
 
-const reactRefreshConfig: Config = {
+import { buildConfig } from "../utils.js"
+
+const reactRefreshConfig = buildConfig({
+  name: "react-refresh",
   extends: [reactRefresh.configs.recommended],
-  ignores: ["**/*.astro"],
   languageOptions: {
     globals: globals.browser,
   },
@@ -14,7 +14,6 @@ const reactRefreshConfig: Config = {
       version: "detect",
     },
   },
-  rules: {},
-}
+})
 
 export { reactRefreshConfig }

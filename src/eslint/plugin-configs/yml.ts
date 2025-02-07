@@ -1,15 +1,18 @@
-import type { BaseConfig, Config } from "../utils.js"
+import type { FlatConfig } from "../utils.js"
 
 import yml from "eslint-plugin-yml"
 
-const ymlConfig: Config = {
+import { buildConfig } from "../utils.js"
+
+const ymlConfig = buildConfig({
+  name: "yml",
   // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-  extends: [yml.configs["flat/standard"] as BaseConfig, yml.configs["flat/prettier"] as BaseConfig],
+  extends: [yml.configs["flat/standard"] as FlatConfig, yml.configs["flat/prettier"] as FlatConfig],
   rules: {
     // additional rules
     "yml/file-extension": "error",
     "yml/require-string-key": "error",
   },
-}
+})
 
 export { ymlConfig }

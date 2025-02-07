@@ -1,11 +1,10 @@
-import type { Config } from "../utils.js"
-
 import jestDom from "eslint-plugin-jest-dom"
 
-const jestDomConfig: Config = {
+import { buildConfig } from "../utils.js"
+
+const jestDomConfig = buildConfig({
+  name: "jest-dom",
   extends: [jestDom.configs["flat/recommended"]],
-  files: ["**/?(*.)+(spec|test).[jt]s?(x)"],
-  rules: {},
-}
+})
 
 export { jestDomConfig }

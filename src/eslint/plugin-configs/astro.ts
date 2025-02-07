@@ -1,8 +1,7 @@
-import type { Config } from "../utils.js"
-
 import astro from "eslint-plugin-astro"
 import globals from "globals"
 
+import { buildConfig } from "../utils.js"
 import { jsxA11yConfig } from "./jsx-a11y.js"
 
 // https://github.com/ota-meshi/eslint-plugin-astro/issues/466
@@ -13,21 +12,23 @@ const baseAstroJsxA11yConfig = astro.configs["flat/jsx-a11y-strict"].slice(0, -1
 const astroJsxA11yPluginConfig = astro.configs["flat/jsx-a11y-strict"].pop()
 const astroJsxA11yPlugin = astroJsxA11yPluginConfig?.plugins?.["jsx-a11y"] ?? {}
 const astroJsxA11yRules = astroJsxA11yPluginConfig?.rules ?? {}
-const fixedAstroJsxA11yConfig: Config = {
+const fixedAstroJsxA11yConfig = buildConfig({
+  name: "astro-jsx-a11y",
   extends: [baseAstroJsxA11yConfig],
   plugins: {
     "astro/jsx-a11y": astroJsxA11yPlugin,
   },
   rules: astroJsxA11yRules,
-}
+})
 
-const jsxA11yAdditionalRules = jsxA11yConfig.rules
+const jsxA11yAdditionalRules = jsxA11yConfig.at(-1)?.rules ?? {}
 const jsxA11yAdditionalRulesEntries = Object.entries(jsxA11yAdditionalRules)
 const astroJsxA11yAdditionalRules = Object.fromEntries(
   jsxA11yAdditionalRulesEntries.map(([rule, value]) => [`astro/${rule}`, value]),
 )
 
-const astroConfig: Config = {
+const astroConfig = buildConfig({
+  name: "astro",
   extends: [astro.configs["flat/recommended"], fixedAstroJsxA11yConfig],
   languageOptions: {
     globals: globals.browser,
@@ -42,6 +43,6 @@ const astroConfig: Config = {
     "astro/prefer-split-class-list": "error",
     ...astroJsxA11yAdditionalRules,
   },
-}
+})
 
 export { astroConfig }

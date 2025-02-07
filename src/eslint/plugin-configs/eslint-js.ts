@@ -1,8 +1,9 @@
-import type { Config } from "../utils.js"
-
 import eslintJs from "@eslint/js"
 
-const eslintJsConfig: Config = {
+import { buildConfig } from "../utils.js"
+
+const eslintJsConfig = buildConfig({
+  name: "eslint-js",
   extends: [eslintJs.configs.recommended],
   rules: {
     // additional rules
@@ -76,6 +77,6 @@ const eslintJsConfig: Config = {
     "no-delete-var": "off",
     complexity: "off",
   },
-}
+})
 
 export { eslintJsConfig }

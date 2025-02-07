@@ -1,8 +1,8 @@
-import type { Config } from "../utils.js"
-
 // @ts-expect-error https://github.com/facebook/react/issues/30119
 import reactHooks from "eslint-plugin-react-hooks"
 import globals from "globals"
+
+import { buildConfig } from "../utils.js"
 
 const reactHooksFlat = {
   // reactHooks hasn't been updated to use the new eslint flat config format
@@ -14,9 +14,9 @@ const reactHooksFlat = {
   rules: reactHooks.configs.recommended.rules,
 }
 
-const reactHooksConfig: Config = {
+const reactHooksConfig = buildConfig({
+  name: "react-hooks",
   extends: [reactHooksFlat],
-  ignores: ["**/*.astro"],
   languageOptions: {
     globals: globals.browser,
   },
@@ -25,7 +25,10 @@ const reactHooksConfig: Config = {
       version: "detect",
     },
   },
-  rules: {},
-}
+  rules: {
+    // modifications to rules that are already turned on in the extended configs
+    "react-hooks/exhaustive-deps": "error",
+  },
+})
 
 export { reactHooksConfig }

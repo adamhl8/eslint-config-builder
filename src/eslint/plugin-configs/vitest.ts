@@ -1,10 +1,10 @@
-import type { Config } from "../utils.js"
-
 import vitest from "@vitest/eslint-plugin"
 
-const vitestConfig: Config = {
+import { buildConfig } from "../utils.js"
+
+const vitestConfig = buildConfig({
+  name: "vitest",
   extends: [vitest.configs.recommended],
-  files: ["**/?(*.)+(spec|test).[jt]s?(x)"],
   settings: {
     vitest: {
       typecheck: "true",
@@ -35,6 +35,6 @@ const vitestConfig: Config = {
     "vitest/require-top-level-describe": "error",
     "vitest/valid-expect-in-promise": "error",
   },
-}
+})
 
 export { vitestConfig }
