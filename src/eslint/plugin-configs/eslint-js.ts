@@ -75,7 +75,6 @@ const eslintJsConfig = buildConfig({
     "no-unused-vars": "off",
     "no-fallthrough": "off",
     "no-delete-var": "off",
-    complexity: "off",
   },
 })
 

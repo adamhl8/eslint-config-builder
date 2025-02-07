@@ -83,24 +83,38 @@ function buildConfigRules(config: StrictConfig) {
 }
 
 function getRules(configs: StrictConfig[]): RuleSet {
-  let additionalConfig = configs.at(-1)
-  if (!additionalConfig) throw new Error(`Failed to get last config from config array:\n${stringify(configs, 2)}`)
+  /*
+  An "additional config" in this context is the last config in the array which contains *our* additional config properties.
+  The only way to tell if there is our additional config exists is to check if the name ends with `ESLINT_CONFIG_BUILDER_SUFFIX`.
+  If it doesn't, the last config is the one from the plugin that was extended.
 
-  // we know there's an additional config if the last config has the suffix
-  const isAdditionalConfig = additionalConfig.name.endsWith(ESLINT_CONFIG_BUILDER_SUFFIX)
-  const configName = additionalConfig.name.replace(ESLINT_CONFIG_BUILDER_SUFFIX, "").trim()
+  It is technically possible for the configs array to have only one config and it be our additional config,
+  which is why we can't assume that a configs array with a length of 1 only has a config from the plugin.
+  */
 
-  // if there's no additional config, set additionalConfig to an empty config
-  if (!isAdditionalConfig) additionalConfig = { name: configName }
+  const lastConfig = configs.at(-1)
+  // the config name from the additional config should be the "friendly" name we set in the config object
+  // otherwise, if it's not an additional config it's whatever the plugin set
+  let configName = lastConfig?.name ?? "UNKNOWN"
+  const additionalConfig = configName.endsWith(ESLINT_CONFIG_BUILDER_SUFFIX) ? lastConfig : undefined
+  // remove the suffix so it looks nice in the test output
+  configName = configName.replace(ESLINT_CONFIG_BUILDER_SUFFIX, "").trim()
 
-  const additionalRules = buildConfigRules(additionalConfig)
+  // edge case: there's only one config and it's an additional config, `extendedConfigs` will be an empty array since that config is on `additionalConfig`
+  // if there's an additional config, we want all but the last config
+  // if there's no additional config, we just use the original array
+  let extendedConfigs: StrictConfig[]
+  if (configs.length === 1 && additionalConfig) extendedConfigs = []
+  // Array.slice(0, -1) returns an empty array if the array has only one element, so we just use the original array in that case
+  else if (additionalConfig) extendedConfigs = configs.length > 1 ? configs.slice(0, -1) : configs
+  else extendedConfigs = configs
 
-  // TIL that Array.slice(0, -1) returns an empty array if the array has only one element
-  const extendedConfigs = configs.length > 1 ? configs.slice(0, -1) : configs
   const rules: ConfigRules = {}
   for (const extendedConfig of extendedConfigs) {
     Object.assign(rules, buildConfigRules(extendedConfig))
   }
+
+  const additionalRules = additionalConfig ? buildConfigRules(additionalConfig) : {}
 
   return {
     name: configName,
@@ -138,14 +152,8 @@ describe("main", () => {
   it.each(ruleSets)(
     "(%s) should not define rules that are already defined in its extended configs",
     (name, { rules, additionalRules }) => {
-      const ignoredRules = new Set([
-        "complexity", // covered by sonarjs/cognitive-complexity
-      ])
-
       const duplicateRules: string[] = []
       for (const [additionalRuleName, additionalRuleSetting] of Object.entries(additionalRules)) {
-        if (ignoredRules.has(additionalRuleName)) continue
-
         const ruleSetting = rules[additionalRuleName]
 
         // if the additional rule setting is off and the rule setting is undefined, it means we're turning off a rule that is already off
