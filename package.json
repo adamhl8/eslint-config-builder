@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-builder",
-  "version": "0.13.1",
+  "version": "0.13.2",
   "type": "module",
   "repository": {
     "type": "git",
@@ -30,10 +30,10 @@
     "bundle": "rm -rf ./dist && tsc -p ./tsconfig.build.json && cp ./src/tsconfig.json ./dist/ && prettier --ignore-path --write . && eslint . && bun test"
   },
   "peerDependencies": {
-    "eslint": "latest",
-    "prettier": "latest",
-    "typescript": "latest",
-    "typescript-eslint": "latest"
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.0.0"
   },
   "dependencies": {
     "@eslint/js": "^9.19.0",
@@ -43,7 +43,7 @@
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/eslint-plugin-jsx-a11y": "^6.10.0",
     "@types/eslint-plugin-tailwindcss": "^3.17.0",
-    "@vitest/eslint-plugin": "^1.1.25",
+    "@vitest/eslint-plugin": "^1.1.26",
     "babel-plugin-react-compiler": "^19.0.0-beta-714736e-20250131",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-astro": "^1.3.1",
