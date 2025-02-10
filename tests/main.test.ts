@@ -177,6 +177,24 @@ describe("main", () => {
     },
   )
 
+  it.each(ruleSets)("(%s) should not define rules that are turned off by prettier", (name, { additionalRules }) => {
+    const conflictingRules: string[] = []
+
+    for (const ruleName of Object.keys(additionalRules)) {
+      const prettierSetting = prettierConfigRules[ruleName]
+      if (prettierSetting === "off") conflictingRules.push(ruleName)
+    }
+
+    const errorMessage = conflictingRules
+      .map(
+        (ruleName) =>
+          `The '${name}' config defines the additional rule '${ruleName}: ${additionalRules[ruleName]?.toString() ?? "undefined"}' which is turned off by the prettier config`,
+      )
+      .join("\n")
+
+    expect(conflictingRules, errorMessage).toEqual([])
+  })
+
   // eslint-disable-next-line sonarjs/cognitive-complexity
   it("plugins should not have conflicting rules", () => {
     const ignoredRuleSets = new Set([
@@ -246,24 +264,6 @@ describe("main", () => {
     }
 
     expect(conflicts, `\n${conflictMessages.join("\n\n")}`).toEqual([])
-  })
-
-  it.each(ruleSets)("(%s) should not define rules that are turned off by prettier", (name, { additionalRules }) => {
-    const conflictingRules: string[] = []
-
-    for (const ruleName of Object.keys(additionalRules)) {
-      const prettierSetting = prettierConfigRules[ruleName]
-      if (prettierSetting === "off") conflictingRules.push(ruleName)
-    }
-
-    const errorMessage = conflictingRules
-      .map(
-        (ruleName) =>
-          `The '${name}' config defines the additional rule '${ruleName}: ${additionalRules[ruleName]?.toString() ?? "undefined"}' which is turned off by the prettier config`,
-      )
-      .join("\n")
-
-    expect(conflictingRules, errorMessage).toEqual([])
   })
 })
 

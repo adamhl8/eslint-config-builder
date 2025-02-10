@@ -18,7 +18,7 @@ const prettierConfig = buildConfig({
 
 // These are language options we want to apply to all configs
 const tsLanguageOptionsConfig: StrictConfig = {
-  name: "typescript-language-options (@adamhl8/ts-project-configs)",
+  name: "typescript-language-options (eslint-config-builder)",
   languageOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
@@ -29,21 +29,32 @@ const tsLanguageOptionsConfig: StrictConfig = {
   },
 }
 
+const presets = {
+  astro: astroPreset,
+  jsonYamlToml: jsonYamlTomlPreset,
+  react: reactPreset,
+  testing: testingPreset,
+  typescript: typescriptPreset,
+} as const
+
+type PresetName = keyof typeof presets
+
 class ESLintConfigBuilder {
   readonly #configs: StrictConfig[] = []
+  readonly #enabledPresets = new Set<string>()
 
   public astro() {
-    this.#addConfig(astroPreset)
+    this.#addPreset("astro")
     return this
   }
 
   public jsonYamlToml() {
-    this.#addConfig(jsonYamlTomlPreset)
+    this.#addPreset("jsonYamlToml")
     return this
   }
 
   public react() {
-    this.#addConfig(reactPreset)
+    this.#addPreset("react")
     return this
   }
 
@@ -53,12 +64,15 @@ class ESLintConfigBuilder {
   }
 
   public testing() {
-    this.#addConfig(testingPreset)
+    this.#addPreset("testing")
     return this
   }
 
-  #addConfig(configs: StrictConfig[]) {
-    this.#configs.push(...configs)
+  #addPreset(presetName: PresetName) {
+    if (!this.#enabledPresets.has(presetName)) {
+      this.#enabledPresets.add(presetName)
+      this.#configs.push(...presets[presetName])
+    }
   }
 
   public build() {
