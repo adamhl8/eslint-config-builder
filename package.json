@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-builder",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "type": "module",
   "repository": {
     "type": "git",
@@ -27,7 +27,8 @@
     "dist/"
   ],
   "scripts": {
-    "bundle": "rm -rf ./dist && tsc -p ./tsconfig.build.json && cp ./src/tsconfig.json ./dist/ && prettier --ignore-path --write . && eslint . && bun test"
+    "bundle": "bun run -c bundle:wrapped",
+    "bundle:wrapped": "rm -rf ./dist && tsc -p ./tsconfig.build.json && cp ./src/tsconfig.json ./dist/ && prettier --ignore-path --write . && eslint . && bun test"
   },
   "peerDependencies": {
     "eslint": "^9.0.0",
@@ -76,9 +77,8 @@
     "@types/bun": "latest",
     "eslint": "^9.20.0",
     "prettier": "^3.5.0",
-    "type-fest": "^4.34.1",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.23.0"
+    "typescript-eslint": "^8.24.0"
   },
   "publishConfig": {
     "access": "public"

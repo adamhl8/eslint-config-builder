@@ -1,14 +1,13 @@
 import type { TSESLint } from "@typescript-eslint/utils"
-import type { Simplify } from "type-fest"
 
 import { jsonYamlTomlPreset } from "./presets/json-yaml-toml.js"
 
 type FlatConfig = TSESLint.FlatConfig.Config
 type InfiniteFlatConfig = FlatConfig | InfiniteFlatConfig[]
 // every config should have a name
-type StrictConfig = Simplify<FlatConfig & Required<Pick<FlatConfig, "name">>>
+type StrictConfig = FlatConfig & Required<Pick<FlatConfig, "name">>
 // We purposely don't use `ConfigWithExtends` from typescript-eslint because the extends property accepts an array of configs which themselves can have extends. We don't want that because we don't want to worry about unwrapping those nested extends.
-type ConfigWithExtends = Simplify<StrictConfig & { extends: InfiniteFlatConfig[] }>
+type ConfigWithExtends = StrictConfig & { extends: InfiniteFlatConfig[] }
 
 type RuleEntry = TSESLint.FlatConfig.RuleEntry
 type RuleLevelAndOptions = TSESLint.FlatConfig.RuleLevelAndOptions
@@ -24,7 +23,7 @@ type ConfigRules = Record<string, RuleLevelAndOptions | SeverityString>
 function buildConfig(config: ConfigWithExtends): StrictConfig[] {
   const { extends: extendsArray, name, files, ignores, ...rest } = config
 
-  // @ts-expect-error fdsafdsafdsafdsa
+  // @ts-expect-error Need to type assert to avoid the "infinite" type
   // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
   const flatExtends = extendsArray.flat(Infinity) as FlatConfig[]
   const extendedConfigs: StrictConfig[] = flatExtends.map((extendedConfig) => {

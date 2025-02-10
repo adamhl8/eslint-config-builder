@@ -29,12 +29,12 @@ const tsLanguageOptionsConfig: StrictConfig = {
   },
 }
 
+// The typescript preset is always included in the final config, so we don't specify it here
 const presets = {
   astro: astroPreset,
   jsonYamlToml: jsonYamlTomlPreset,
   react: reactPreset,
   testing: testingPreset,
-  typescript: typescriptPreset,
 } as const
 
 type PresetName = keyof typeof presets
