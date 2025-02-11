@@ -10,10 +10,12 @@ const prettierConfig: Config = {
     "@prettier/plugin-xml",
     "prettier-plugin-jsdoc",
     "prettier-plugin-astro",
-    "prettier-plugin-tailwindcss",
-    // must be last: https://github.com/IanVS/prettier-plugin-sort-imports/issues/201
     "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss",
+    "prettier-plugin-merge",
   ],
+  tsdoc: true,
+  jsdocPreferCodeFences: true,
   importOrder: [
     "<TYPES>^(node:)",
     "<TYPES>",

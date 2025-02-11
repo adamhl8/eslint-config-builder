@@ -21,6 +21,7 @@ const jsdocConfig = buildConfig({
         },
       },
     ],
+    "jsdoc/tag-lines": ["error", "never", { startLines: 1 }],
 
     // additional rules
     "jsdoc/check-indentation": "error",

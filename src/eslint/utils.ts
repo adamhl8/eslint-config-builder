@@ -15,10 +15,11 @@ type SeverityString = TSESLint.FlatConfig.SeverityString
 type ConfigRules = Record<string, RuleLevelAndOptions | SeverityString>
 
 /**
+ * This is our own version of tseslint's config helper:
+ * {@link https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/typescript-eslint/src/config-helper.ts}
+ *
  * @param config A ESLint config with extends
  * @returns An array of configs where any additional properties are added to all configs in the extends array
- * @description
- * This is our own version of tseslint's config helper: {@link https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/typescript-eslint/src/config-helper.ts}
  */
 function buildConfig(config: ConfigWithExtends): StrictConfig[] {
   const { extends: extendsArray, name, files, ignores, ...rest } = config
@@ -70,9 +71,7 @@ function buildConfig(config: ConfigWithExtends): StrictConfig[] {
   return filteredConfigs
 }
 
-/**
- * We need to ignore all JSON, YAML, and TOML files for some configs or else they will throw errors.
- */
+/** We need to ignore all JSON, YAML, and TOML files for some configs or else they will throw errors. */
 const jsonYamlTomlIgnores = [
   ...new Set(
     jsonYamlTomlPreset

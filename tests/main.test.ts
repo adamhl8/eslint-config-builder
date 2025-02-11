@@ -137,6 +137,7 @@ interface RuleInstance {
 
 /**
  * @example
+ *
  * ```
  * {
  *   "no-var": {
