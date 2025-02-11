@@ -21,6 +21,8 @@ const jsdocConfig = buildConfig({
         },
       },
     ],
+    // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/sort-tags.md#linesbetween
+    "jsdoc/sort-tags": ["error", { linesBetween: 0 }],
     "jsdoc/tag-lines": ["error", "never", { startLines: 1 }],
 
     // additional rules
