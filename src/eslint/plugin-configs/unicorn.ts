@@ -4,7 +4,7 @@ import { buildConfig } from "../utils.js"
 
 const unicornConfig = buildConfig({
   name: "unicorn",
-  extends: [unicorn.configs["flat/recommended"]],
+  extends: [unicorn.configs.recommended],
   rules: {
     // modifications to rules that are already turned on in the extended configs
     "unicorn/filename-case": "off",

@@ -4,7 +4,6 @@ import { buildConfig } from "../utils.js"
 
 const sonarjsConfig = buildConfig({
   name: "sonarjs",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   extends: [sonarjs.configs.recommended],
   rules: {
     // modifications to rules that are already turned on in the extended configs
