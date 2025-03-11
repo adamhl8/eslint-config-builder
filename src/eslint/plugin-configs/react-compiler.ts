@@ -1,4 +1,3 @@
-// @ts-expect-error https://github.com/facebook/react/issues/30119
 import reactCompiler from "eslint-plugin-react-compiler"
 import globals from "globals"
 
@@ -6,7 +5,7 @@ import { buildConfig } from "../utils.js"
 
 const reactCompilerConfig = buildConfig({
   name: "react-compiler",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+  // @ts-expect-error plugin rule is typed as a string instead of a RuleEntry
   extends: [reactCompiler.configs.recommended],
   languageOptions: {
     globals: globals.browser,
