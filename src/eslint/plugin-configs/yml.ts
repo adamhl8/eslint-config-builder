@@ -1,8 +1,6 @@
-import type { FlatConfig } from "../utils.js"
-
 import yml from "eslint-plugin-yml"
 
-import { buildConfig } from "../utils.js"
+import { buildConfig, type FlatConfig } from "../utils.js"
 
 const ymlConfig = buildConfig({
   name: "yml",

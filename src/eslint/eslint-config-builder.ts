@@ -1,5 +1,3 @@
-import type { StrictConfig } from "./utils.js"
-
 import prettier from "eslint-config-prettier"
 import globals from "globals"
 import tseslint from "typescript-eslint"
@@ -9,7 +7,7 @@ import { jsonYamlTomlPreset } from "./presets/json-yaml-toml.js"
 import { reactPreset } from "./presets/react.js"
 import { testingPreset } from "./presets/testing.js"
 import { typescriptPreset } from "./presets/typescript.js"
-import { buildConfig } from "./utils.js"
+import { buildConfig, type StrictConfig } from "./utils.js"
 
 const prettierConfig = buildConfig({
   name: "prettier",

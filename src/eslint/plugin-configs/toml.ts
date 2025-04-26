@@ -1,8 +1,6 @@
-import type { FlatConfig } from "../utils.js"
-
 import toml from "eslint-plugin-toml"
 
-import { buildConfig } from "../utils.js"
+import { buildConfig, type FlatConfig } from "../utils.js"
 
 const tomlConfig = buildConfig({
   name: "toml",

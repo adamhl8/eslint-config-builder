@@ -1,5 +1,3 @@
-import type { ConfigRules, RuleEntry, StrictConfig } from "../src/eslint/utils.js"
-
 import { inspect } from "bun"
 import { describe, expect, it } from "bun:test"
 import prettier from "eslint-config-prettier"
@@ -25,7 +23,7 @@ import { tseslintConfig } from "../src/eslint/plugin-configs/tseslint.js"
 import { unicornConfig } from "../src/eslint/plugin-configs/unicorn.js"
 import { vitestConfig } from "../src/eslint/plugin-configs/vitest.js"
 import { ymlConfig } from "../src/eslint/plugin-configs/yml.js"
-import { buildConfig } from "../src/eslint/utils.js"
+import { buildConfig, type ConfigRules, type RuleEntry, type StrictConfig } from "../src/eslint/utils.js"
 
 interface RuleSet {
   name: string
