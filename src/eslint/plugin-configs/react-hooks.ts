@@ -5,7 +5,7 @@ import { buildConfig } from "../utils.js"
 
 const reactHooksConfig = buildConfig({
   name: "react-hooks",
-  extends: [reactHooks.configs["recommended-latest"]],
+  extends: [reactHooks.configs.recommended],
   languageOptions: {
     globals: globals.browser,
   },
@@ -15,6 +15,9 @@ const reactHooksConfig = buildConfig({
     },
   },
   rules: {
+    // additional rules
+    "react-hooks/react-compiler": "error",
+
     // modifications to rules that are already turned on in the extended configs
     "react-hooks/exhaustive-deps": "error",
   },

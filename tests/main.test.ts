@@ -10,7 +10,6 @@ import { jestDomConfig } from "../src/eslint/plugin-configs/jest-dom.js"
 import { jsdocConfig } from "../src/eslint/plugin-configs/jsdoc.js"
 import { jsxA11yConfig } from "../src/eslint/plugin-configs/jsx-a11y.js"
 import { promiseConfig } from "../src/eslint/plugin-configs/promise.js"
-import { reactCompilerConfig } from "../src/eslint/plugin-configs/react-compiler.js"
 import { reactHooksConfig } from "../src/eslint/plugin-configs/react-hooks.js"
 import { reactRefreshConfig } from "../src/eslint/plugin-configs/react-refresh.js"
 import { reactConfig } from "../src/eslint/plugin-configs/react.js"
@@ -40,7 +39,6 @@ const pluginConfigs = [
   jsdocConfig,
   jsxA11yConfig,
   promiseConfig,
-  reactCompilerConfig,
   reactHooksConfig,
   reactRefreshConfig,
   reactConfig,
