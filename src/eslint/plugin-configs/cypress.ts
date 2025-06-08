@@ -1,5 +1,5 @@
 // @ts-expect-error does not include types
-import cypress from "eslint-plugin-cypress/flat"
+import cypress from "eslint-plugin-cypress"
 
 import { buildConfig } from "../utils.js"
 
